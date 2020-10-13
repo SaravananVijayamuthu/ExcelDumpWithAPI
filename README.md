@@ -6,6 +6,23 @@
 <img src="https://img.icons8.com/dusk/64/000000/postman-api.png" alt="postman" width="40" height="40"/>
 </p> 
 
+## Folder Structure
+```bash
+📦ExcelDumpWithAPI
+┣ 📂data
+┃ ┗ 📜Common Report.xlsx
+┃ ┗ 📜Final Report.xlsx
+┣ 📂mail
+┃ ┗ 📜yagmail_test.py
+┣ 📂model
+┃ ┣ 📜config.py
+┃ ┗ 📜excel.py
+┣ 📜.gitignore
+┣ 📜api.py
+┣ 📜main.py
+┗ 📜requirements.txt
+```
+
 The entire application is contained within the `main.py` file.
 
 `config.py` is a minimal Rack configuration for Excel-Dump.
