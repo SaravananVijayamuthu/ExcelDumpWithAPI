@@ -16,6 +16,18 @@ documentation below.
 ## Note
  It is based on Python 3.x - Make sure your MongoDB is running fine
 
+## Prerequisite
+◾ [Python](https://www.python.org/downloads/) 3.8 +
+
+◾ Should have Virtual Environmental variable([venv](https://www.geeksforgeeks.org/create-virtual-environment-using-venv-python/))
+
+◾ [MongoDB](https://www.mongodb.com/try/download)
+
+◾ Any GUI for local Database server [MongoDB-Compass](https://www.mongodb.com/products/compass), [Studio 3T](https://studio3t.com/download/), [Robo 3T](https://robomongo.org/download)
+
+◾ [Postman](https://www.postman.com/)
+
+
 ## Install
 
     pip install -r requirements.txt
@@ -109,3 +121,15 @@ If Flag is 1 in URL of API mail will be sent to the client.
     
     {"status": 404, "message": "Check Your URL Please!!"}
 
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+<p align="center">
+<a href='https://ko-fi.com/C0C12CBIQ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=5' border='5' alt='Buy Me a Coffee at ko-fi.com' /></a>
+</p>
