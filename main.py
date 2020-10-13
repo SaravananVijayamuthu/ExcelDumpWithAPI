@@ -149,3 +149,15 @@ def mail_sender(final_file, flag):
             attachments=final_file,
             contents="Spliting Data Sheet Name wise is done.The approach and libraries are that only which we discussed"
             )
+
+
+######################
+##api function
+######################
+def run_main(con, flag):
+    from_main(con)
+    df = generate_data_to_excel()
+    generate_data_to_excel()
+    final_file=split_sheet(df)
+    mail_sender(final_file, flag)
+    return reports_array
