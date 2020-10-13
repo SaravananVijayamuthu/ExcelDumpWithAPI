@@ -8,7 +8,7 @@ import string
 import yagmail
 import xlsxwriter
 import os
-import config as cfg
+import model.config as cfg
 
 
 ######################
@@ -18,6 +18,12 @@ client=MongoClient(cfg.uri)
 db_name=cfg.dbname
 db=client[db_name]
 
+######################
+##Global values
+######################
+total_documents_list=[]
+columns=[]
+file="./Common Report.xlsx"
 
 ######################
 ##Count all docs

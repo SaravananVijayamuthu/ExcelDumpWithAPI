@@ -2,7 +2,7 @@ from flask import Flask, Response, request
 from flask_restful import  Resource,Api
 from main import run_main
 import json
-import config as cfg
+import model.config as cfg
 
 app = Flask(__name__)
 api = Api(app)
@@ -27,7 +27,7 @@ class GetAll(Resource):
                 response = json.dumps(run,default=str), 
                 status=200,
                 mimetype="application/json"
-                ) 
+                )
             elif flag != flag:
                 run = run_main(configuration_counts,flag)
                 return Response(
@@ -36,6 +36,7 @@ class GetAll(Resource):
                 mimetype="application/json"
                 )
         except Exception as e:
+            print(e)
             return Response(
             response = json.dumps(
                 {"message":"Check Your URL Please!!"},default=str), 
