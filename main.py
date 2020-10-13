@@ -9,3 +9,11 @@ import yagmail
 import xlsxwriter
 import os
 import config as cfg
+
+
+######################
+##Creating Connection
+######################
+client=MongoClient(cfg.uri)
+db_name=cfg.dbname
+db=client[db_name]   
