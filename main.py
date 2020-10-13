@@ -18,6 +18,7 @@ client=MongoClient(cfg.uri)
 db_name=cfg.dbname
 db=client[db_name]
 
+
 ######################
 ##Count all docs
 ######################
@@ -26,3 +27,11 @@ def docs_count():
         total_documents=db[cfg.configuration_count["stats_for_{}".format(i+1)]["collection_name"]].count_documents({})
         total_documents_list.append(total_documents)
     return total_documents_list
+
+
+######################
+##Count in Query & Range
+######################
+def docs_count_interval_day(start_date_time,end_date_time,collection_name,query): #search_date="current_date"
+    get_count_date=db[collection_name].count_documents(query)
+    return get_count_date
