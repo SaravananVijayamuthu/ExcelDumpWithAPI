@@ -114,3 +114,23 @@ def generate_data_to_excel():
     print(df)
     df.to_excel(file,sheet_name=cfg.new_sheet_name,index=False,engine='openpyxl')
     return df
+
+
+######################
+##Spliting Sheet
+######################
+def split_sheet(df):
+    df1=pd.read_excel(file)
+    extenxion=os.path.splitext(file)[1]
+    path=os.getcwd()
+    final_file=os.path.join(path,"Final Report"+""+extenxion)
+    column_pick="Sheet"
+    columns=list(set(df1[column_pick].values))
+    copyfile(file,final_file)
+    for _ in columns:
+        writer=pd.ExcelWriter(final_file,engine="openpyxl")
+        for sheet_name in columns:
+            new_df=df.loc[df[column_pick]== sheet_name]
+            new_df.to_excel(writer,sheet_name,index=False)
+        writer.save()
+    return final_file
