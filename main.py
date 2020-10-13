@@ -62,3 +62,45 @@ def build_excel_data(From,To,name,query,count,sheet):
         "Sheet":sheet
     }
     reports_array.append(report)
+
+
+
+######################
+##Checks and Converstions
+######################
+def from_main(con):
+    for cfgkey,cfgval in con.items():
+        collection_name=cfgval["collection_name"]
+        if cfgval["is_active"]== 1:
+            if cfgval["interval_mode"] == 'day':
+                print(cfgkey)
+                if not cfgval["interval_date"] or not cfgval["interval_date"].strip():
+                    previous_date=datetime.date.today()-datetime.timedelta(days=1)
+                    start_date_str=str(previous_date)+" "+"00:00:00"
+                    start_date=datetime.datetime.strptime(start_date_str,'%Y-%m-%d %H:%M:%S')
+                    end_date_str=str(datetime.date.today())+" "+"00:00:00"
+                    query1={cfgval["field_name"]:{'$gte':start_date,'$lt':end_date}}
+                    query2=cfgval["filter"]
+                    query=query1.copy()
+                    query.update(query2)
+                    end_date=datetime.datetime.strptime(end_date_str,'%Y-%m-%d %H:%M:%S')
+                    docs_in_collection_range_day = docs_count_interval_day(start_date,end_date,collection_name,query)
+                    print("---",aggregate_fucntion(start_date,end_date,cfgval["group_by"]))
+                    build_excel_data(start_date,end_date,cfgval["name"],query,docs_in_collection_range_day,cfgval["new_sheet_name"])
+                else :
+                    start_date_time_str=cfgval["interval_time"]
+                    if not cfgval["interval_time"]:
+                        start_date_time_str="00:00:00" 
+                        print("hello")           
+                    start_date_str=cfgval["interval_date"]+" "+start_date_time_str
+                    start_date=datetime.datetime.strptime(start_date_str,'%Y-%m-%d %H:%M:%S')
+                    end_date_str_1=start_date.date()+datetime.timedelta(days=1)
+                    end_date_str=str(end_date_str_1)+" "+start_date_time_str
+                    end_date=datetime.datetime.strptime(end_date_str,'%Y-%m-%d %H:%M:%S')
+                    query1={cfgval["field_name"]:{'$gte':start_date,'$lt':end_date}}
+                    query2=cfgval["filter"]
+                    query=query1.copy()
+                    query.update(query2)
+                    docs_in_collection_range_day = docs_count_interval_day(start_date,end_date,collection_name,query)
+                    print("---",aggregate_fucntion(start_date,end_date,cfgval["group_by"]))
+                    build_excel_data(start_date,end_date,cfgval["name"],query,docs_in_collection_range_day,cfgval["new_sheet_name"])
