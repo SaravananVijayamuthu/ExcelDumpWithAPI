@@ -104,3 +104,13 @@ def from_main(con):
                     docs_in_collection_range_day = docs_count_interval_day(start_date,end_date,collection_name,query)
                     print("---",aggregate_fucntion(start_date,end_date,cfgval["group_by"]))
                     build_excel_data(start_date,end_date,cfgval["name"],query,docs_in_collection_range_day,cfgval["new_sheet_name"])
+
+
+######################
+##Creating and Spliting Excel
+######################
+def generate_data_to_excel():
+    df=pd.DataFrame(reports_array,columns=["From",'To','Name','Query','Count',"Sheet"])
+    print(df)
+    df.to_excel(file,sheet_name=cfg.new_sheet_name,index=False,engine='openpyxl')
+    return df
