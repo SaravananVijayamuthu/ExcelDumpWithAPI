@@ -46,3 +46,19 @@ def aggregate_fucntion(start_date,end_date,group_by):
         {"$group":{"_id":group_by,"Count":{"$sum":1}}}
     ])
     return list(records)
+
+
+######################
+##Creating Data for Excel
+######################
+reports_array=[]
+def build_excel_data(From,To,name,query,count,sheet):
+    report={
+        "From":str(From),
+        "To":str(To),
+        "Name":name,
+        "Query":query,
+        "Count":count,
+        "Sheet":sheet
+    }
+    reports_array.append(report)
