@@ -44,12 +44,39 @@ class GetAll(Resource):
                 ) 
 
 
-
-
-
-
-
-
+######################
+#single dataset
+######################
+class Configurations(Resource):
+    def get(self, name, flag):
+        try:
+            if flag == flag:
+                for config,cfgval in configuration_counts.copy().items():
+                    if config != name:
+                        configuration_counts.pop(config)
+                con = configuration_counts
+                return Response(
+                response = json.dumps(run_main(con,flag),default=str), 
+                status=200,
+                mimetype="application/json"
+                )
+            elif flag != flag:
+                for config,cfgval in configuration_counts.copy().items():
+                    if config != name:
+                        configuration_counts.pop(config)
+                con = configuration_counts
+                return Response(
+                response = json.dumps(run_main(con,flag),default=str), 
+                status=200,
+                mimetype="application/json"
+                )
+        except Exception as e:
+            return Response(
+            response = json.dumps(
+                {"message":"Check Your URL Please!!"},default=str), 
+                status=404,
+                mimetype="application/json"
+                )
 
 
 
@@ -57,8 +84,7 @@ class GetAll(Resource):
 ##api call
 ######################
 api.add_resource(GetAll,"/configuration/<int:flag>/")
-
-
+api.add_resource(Configurations,"/configs/<string:name>/<int:flag>/")
 
 
 if __name__ =='__main__':
