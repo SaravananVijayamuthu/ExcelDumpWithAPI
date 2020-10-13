@@ -23,7 +23,7 @@ db=client[db_name]
 ######################
 total_documents_list=[]
 columns=[]
-file="./Common Report.xlsx"
+file="./data/Common Report.xlsx"
 
 ######################
 ##Count all docs
@@ -129,7 +129,7 @@ def split_sheet(df):
     df1=pd.read_excel(file)
     extenxion=os.path.splitext(file)[1]
     path=os.getcwd()
-    final_file=os.path.join(path,"Final Report"+""+extenxion)
+    final_file=os.path.join(path,"./data/Final Report"+""+extenxion)
     column_pick="Sheet"
     columns=list(set(df1[column_pick].values))
     copyfile(file,final_file)
