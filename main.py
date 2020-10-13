@@ -35,3 +35,14 @@ def docs_count():
 def docs_count_interval_day(start_date_time,end_date_time,collection_name,query): #search_date="current_date"
     get_count_date=db[collection_name].count_documents(query)
     return get_count_date
+
+
+######################
+##Find Results(Aggregate)
+######################
+def aggregate_fucntion(start_date,end_date,group_by):
+    records=db[cfg.collection_name].aggregate([
+        {"$match":{}},
+        {"$group":{"_id":group_by,"Count":{"$sum":1}}}
+    ])
+    return list(records)
