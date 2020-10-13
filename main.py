@@ -134,3 +134,18 @@ def split_sheet(df):
             new_df.to_excel(writer,sheet_name,index=False)
         writer.save()
     return final_file
+
+
+######################
+##Sending Mail
+######################
+def mail_sender(final_file, flag):
+    if flag:
+        sender = cfg.sender
+        yag=yagmail.SMTP(sender,password=cfg.password)
+        yag.login()
+        yag.send(to=cfg.reciever,
+            subject="Spliting Sheet",
+            attachments=final_file,
+            contents="Spliting Data Sheet Name wise is done.The approach and libraries are that only which we discussed"
+            )
